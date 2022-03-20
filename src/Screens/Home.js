@@ -1,28 +1,14 @@
 //import liraries
-import React, { Component, useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Button } from 'react-native';
+import React, { useState } from 'react';
+import { Button, StyleSheet, Text, View } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
 import { decrement, increment } from '../redux/action';
-import store from '../redux/store';
 
 
 // create a component
-const Home = ({ subscribe, getState,dispatch }) => {
-
-
-    const [number, setNumber] = useState(0)
-
-
-
-    useEffect(() => {
-        const unsubscribe = subscribe(() => {
-            let value = getState().num
-            setNumber(value)
-            console.log("store value", value)
-        })
-        return () => {
-            unsubscribe()
-        }
-    }, [])
+const Home = (props) => {
+    const number = useSelector((state) => state.num)
+    const dispatch = useDispatch()
 
     const onAdd = () => {
         dispatch(increment(number))
