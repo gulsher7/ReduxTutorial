@@ -1,10 +1,10 @@
-import types from "./types";
+import types from "../types"
 
 let init_state = {
     num: 0
 }
 
-export function counterReducer(state = init_state, action) {
+export default function (state = init_state, action) {
     switch (action.type) {
         case types.INCREMENT: {
            let data = action.payload
